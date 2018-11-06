@@ -10,3 +10,6 @@ boards/migrations
 boards/__init__.py
 templates/admin
 templates/registration
+accounts/
+blogs/
+templates/base.html
