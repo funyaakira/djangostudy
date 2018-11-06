@@ -6,6 +6,7 @@ from django.http import Http404, HttpResponse
 from .forms import NewTopicForm, MemberModelForm
 from django.views.decorators.http import require_POST
 
+
 def home(request):
     boards = Board.objects.all()
     return render(request, 'boards/home.html',{'boards': boards})
