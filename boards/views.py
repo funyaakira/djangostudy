@@ -35,6 +35,9 @@ def new_topic(request,pk):
         # message = request.POST['message']
         # user = User.objects.first()
         #
+
+
+        
         # topic = Topic.objects.create(
         #     subject=subject,
         #     board=board,
