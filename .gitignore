@@ -1,0 +1,12 @@
+db.sqlite3
+ayumi_manager/
+mysite/
+polls/
+static
+heibon-django.log
+manage.py
+boards/__pycache__
+boards/migrations
+boards/__init__.py
+templates/admin
+templates/registration
