@@ -1,0 +1,12 @@
+from django.urls import path
+from . import views
+
+app_name='boards'
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('boards/<int:pk>/', views.board_topics, name="board_topics"),
+    path('boards/<int:pk>/new/', views.new_topic, name="new_topic"),
+
+    path('boards/testapp/e1_index/', views.e1_index, name="e1_index"),
+    path('boards/testapp/e1_save/', views.e1_save, name="e1_save"),
+]
