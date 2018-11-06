@@ -6,7 +6,6 @@ from django.http import Http404, HttpResponse
 from .forms import NewTopicForm, MemberModelForm
 from django.views.decorators.http import require_POST
 
-
 def home(request):
     boards = Board.objects.all()
     return render(request, 'boards/home.html',{'boards': boards})
@@ -34,7 +33,6 @@ def new_topic(request,pk):
             )
         # subject = request.POST['subject']
         # message = request.POST['message']
-        #
         # user = User.objects.first()
         #
         # topic = Topic.objects.create(
