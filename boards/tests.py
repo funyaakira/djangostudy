@@ -9,7 +9,7 @@ from .forms import NewTopicForm
 class HomeTest(TestCase):
     def setUp(self):
         self.board = Board.objects.create(name='Django', description='Django board.')
-        url = reverse('boards:home')
+        url = reverse('home')
         self.response = self.client.get(url)
 
     def test_home_view_status_code(self):
@@ -20,7 +20,7 @@ class HomeTest(TestCase):
         self.assertEquals(view.func, home)
 
     def test_home_view_contains_link_to_topics_page(self):
-        board_topics_url = reverse('boards:board_topics', kwargs={'pk': self.board.pk})
+        board_topics_url = reverse('board_topics', kwargs={'pk': self.board.pk})
         self.assertContains(self.response, 'href="{0}"'.format(board_topics_url))
 
 class BoardTopicsTests(TestCase):
@@ -28,12 +28,12 @@ class BoardTopicsTests(TestCase):
         Board.objects.create(name='Django', description='Django board.')
 
     def test_board_topics_view_success_status_code(self):
-        url = reverse('boards:board_topics', kwargs={'pk': 1})
+        url = reverse('board_topics', kwargs={'pk': 1})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
     def test_board_topics_view_not_found_status_code(self):
-        url = reverse('boards:board_topics', kwargs={'pk': 99})
+        url = reverse('board_topics', kwargs={'pk': 99})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
 
@@ -42,9 +42,9 @@ class BoardTopicsTests(TestCase):
         self.assertEquals(view.func, board_topics)
 
     def test_board_topics_view_contains_link_back_to_homepage(self):
-        board_topics_url = reverse('boards:board_topics', kwargs={'pk': 1})
+        board_topics_url = reverse('board_topics', kwargs={'pk': 1})
         response = self.client.get(board_topics_url)
-        homepage_url = reverse('boards:home')
+        homepage_url = reverse('home')
         self.assertContains(response, 'href="{0}"'.format(homepage_url))
 
 class NewTopicTests(TestCase):
@@ -53,12 +53,12 @@ class NewTopicTests(TestCase):
         User.objects.create_user(username='john', email='john@doe.com', password='123')
 
     def test_new_topic_view_success_status_code(self):
-        url = reverse('boards:new_topic', kwargs={'pk': 1})
+        url = reverse('new_topic', kwargs={'pk': 1})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
     def test_new_topic_view_not_found_status_code(self):
-        url = reverse('boards:new_topic', kwargs={'pk': 99})
+        url = reverse('new_topic', kwargs={'pk': 99})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 404)
 
@@ -67,9 +67,9 @@ class NewTopicTests(TestCase):
         self.assertEquals(view.func, new_topic)
 
     def test_new_topic_view_contains_navigation_links(self):
-        board_topics_url = reverse('boards:board_topics', kwargs={'pk': 1})
-        homepage_url = reverse('boards:home')
-        new_topic_url = reverse('boards:new_topic', kwargs={'pk': 1})
+        board_topics_url = reverse('board_topics', kwargs={'pk': 1})
+        homepage_url = reverse('home')
+        new_topic_url = reverse('new_topic', kwargs={'pk': 1})
 
         response = self.client.get(board_topics_url)
 
@@ -77,12 +77,12 @@ class NewTopicTests(TestCase):
         self.assertContains(response, 'href="{0}"'.format(new_topic_url))
 
     def test_csrf(self):
-        url = reverse('boards:new_topic', kwargs={'pk': 1})
+        url = reverse('new_topic', kwargs={'pk': 1})
         response = self.client.get(url)
         self.assertContains(response, 'csrfmiddlewaretoken')
 
     def test_new_topic_valid_post_data(self):
-        url = reverse('boards:new_topic', kwargs={'pk': 1})
+        url = reverse('new_topic', kwargs={'pk': 1})
         data = {
             'subject': 'Test title',
             'message': 'Lorem ipsum dolor sit amet'
@@ -92,12 +92,12 @@ class NewTopicTests(TestCase):
         self.assertTrue(Post.objects.exists())
 
     def test_new_topic_invalid_post_data(self):
-        url = reverse('boards:new_topic', kwargs={'pk': 1})
+        url = reverse('new_topic', kwargs={'pk': 1})
         response = self.client.post(url, {})
         self.assertEquals(response.status_code, 200)
 
     def test_new_topic_invalid_post_data_empty_fields(self):
-        url = reverse('boards:new_topic', kwargs={'pk': 1})
+        url = reverse('new_topic', kwargs={'pk': 1})
         data = {
             'subject': '',
             'message': ''
@@ -108,13 +108,13 @@ class NewTopicTests(TestCase):
         self.assertFalse(Post.objects.exists())
 
     def test_contains_form(self):
-        url = reverse('boards:new_topic', kwargs={'pk': 1})
+        url = reverse('new_topic', kwargs={'pk': 1})
         response = self.client.get(url)
         form = response.context.get('form')
         self.assertIsInstance(form, NewTopicForm)
 
     def test_new_topic_invalid_post_data(self):
-        url = reverse('boards:new_topic', kwargs={'pk': 1})
+        url = reverse('new_topic', kwargs={'pk': 1})
         response = self.client.post(url, {})
         form = response.context.get('form')
         self.assertEquals(response.status_code, 200)

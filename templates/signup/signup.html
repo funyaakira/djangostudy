@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block body %}
   <h2>Sign up</h2>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% include "include.html" %}
+    <button type="submit" class="btn btn-primary">Create an account</button>
+  </form>
 {% endblock %}

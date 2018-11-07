@@ -17,4 +17,3 @@ accounts/migrations
 accounts/__init__.py
 accounts/__pycache__
 blogs/
-templates/base.html
