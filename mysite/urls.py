@@ -22,7 +22,7 @@ from django.conf import settings
 urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
-    path('/', views.home, name="home"),
+    path('', views.home, name="home"),
     path('signup/', accounts_views.signup, name="signup"),
     path('boards/<int:pk>/', views.board_topics, name='board_topics'),
     path('boards/<int:pk>/new/', views.new_topic, name='new_topic'),
