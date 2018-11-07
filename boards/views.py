@@ -37,7 +37,7 @@ def new_topic(request,pk):
         #
 
 
-        
+
         # topic = Topic.objects.create(
         #     subject=subject,
         #     board=board,
@@ -50,7 +50,7 @@ def new_topic(request,pk):
         #     created_by=user
         # )
 
-            return redirect('boards:board_topics', pk=board.pk)
+            return redirect('board_topics', pk=board.pk)
     else:
         form = NewTopicForm()
 

@@ -1,4 +1,4 @@
-{% extends 'boards/base.html' %}
+{% extends 'base.html' %}
 
 {% block breadcrumb %}
   <li class="breadcrumb-item active">Boards</li>
@@ -18,7 +18,7 @@
       {% for board in boards %}
       <tr>
         <td>
-          <a href="{% url 'boards:board_topics' board.pk %}">{{ board.name }}</a>
+          <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
           <small class="text-muted d-block">{{ board.description }}</small>
         </td>
         <td class="align-middle">0</td>

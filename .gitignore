@@ -1,6 +1,9 @@
 db.sqlite3
 ayumi_manager/
-mysite/
+mysite/__pycache__
+mysite/__init__.py
+mysite/settings.py
+mysite/wsgi.py
 polls/
 static
 heibon-django.log
@@ -10,6 +13,8 @@ boards/migrations
 boards/__init__.py
 templates/admin
 templates/registration
-accounts/
+accounts/migrations
+accounts/__init__.py
+accounts/__pycache__
 blogs/
 templates/base.html
