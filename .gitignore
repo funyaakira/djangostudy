@@ -2,7 +2,6 @@ db.sqlite3
 ayumi_manager/
 mysite/__pycache__
 mysite/__init__.py
-mysite/settings.py
 mysite/wsgi.py
 polls/
 heibon-django.log
