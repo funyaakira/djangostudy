@@ -5,7 +5,6 @@ mysite/__init__.py
 mysite/settings.py
 mysite/wsgi.py
 polls/
-static
 heibon-django.log
 manage.py
 boards/__pycache__

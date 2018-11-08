@@ -118,5 +118,4 @@ class NewTopicTests(TestCase):
         form = response.context.get('form')
         self.assertEquals(response.status_code, 200)
         self.assertTrue(form.errors)
-        print(form.errors)
         self.assertContains(response, 'このフィールドは必須です。')

@@ -18,12 +18,14 @@ from django.urls import path, include
 from accounts import views as accounts_views
 from boards import views
 from django.conf import settings
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
     path('signup/', accounts_views.signup, name="signup"),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('boards/<int:pk>/', views.board_topics, name='board_topics'),
     path('boards/<int:pk>/new/', views.new_topic, name='new_topic'),
     # path('accounts/', include('accounts.urls')),
