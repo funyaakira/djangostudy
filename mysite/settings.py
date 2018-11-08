@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'boards.apps.BoardsConfig',
     'accounts.apps.AccountsConfig',
     'polls.apps.PollsConfig',
-    'blogs.apps.BlogsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
