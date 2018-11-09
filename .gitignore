@@ -11,6 +11,7 @@ boards/migrations
 boards/__init__.py
 templates/admin
 templates/registration
+templates/base_ayumi.html
 accounts/migrations
 accounts/__init__.py
 accounts/__pycache__

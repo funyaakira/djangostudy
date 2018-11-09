@@ -21,7 +21,8 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    # path('polls/', include('polls.urls')),
+    path('polls/', include('polls.urls')),
+    path('ayumi_manager/', include('ayumi_manager.urls')),
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
     path('signup/', accounts_views.signup, name="signup"),
