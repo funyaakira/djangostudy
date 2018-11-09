@@ -5,6 +5,7 @@ from .models import Board, Topic, Post
 from django.http import Http404, HttpResponse
 from .forms import NewTopicForm, MemberModelForm
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     boards = Board.objects.all()
@@ -14,6 +15,7 @@ def board_topics(request, pk):
     board = get_object_or_404(Board, pk=pk)
     return render(request, 'boards/topics.html', {'board': board})
 
+@login_required
 def new_topic(request,pk):
     board = get_object_or_404(Board, pk=pk)
     user = User.objects.first()
