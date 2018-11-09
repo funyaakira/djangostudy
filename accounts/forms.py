@@ -7,3 +7,9 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields =('username', 'email', 'password1', 'password2')
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        
+        if User.objects.filter(email=email):
+            raise forms.ValidationError('このメールアドレスは登録されています。')

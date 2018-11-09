@@ -2,8 +2,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.urls import reverse, resolve
 from django.test import TestCase
-from ..views import signup
-from ..forms import SignUpForm
+from accounts.views import signup
+from accounts.forms import SignUpForm
 
 class SignUpTests(TestCase):
     def setUp(self):
@@ -74,7 +74,7 @@ class SignUpFormTest(TestCase):
         expected = ['username', 'email', 'password1', 'password2',]
         actual = list(form.fields)
 
-        print(expected)
-        print(actual)
-        
+        # print(expected)
+        # print(actual)
+
         self.assertSequenceEqual(expected, actual)

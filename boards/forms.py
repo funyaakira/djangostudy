@@ -9,12 +9,22 @@ class NewTopicForm(forms.ModelForm):
         max_length=4000,
         help_text='The max length of the text is 4000.')
 
+    subject = forms.CharField(
+        widget=forms.TextInput (
+            attrs={'class': 'form-control'}
+        )
+        )
+
     class Meta:
         model = Topic
         fields = ['subject', 'message']
 
 
-
+    def clean_subject(self):
+        subject = self.cleaned_data['subject']
+        if subject=="test":
+            raise forms.ValidationError('subjectにtestは使用できません')
+            
 class MemberModelForm(forms.ModelForm):
     class Meta:
         model = Member
