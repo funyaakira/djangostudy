@@ -25,13 +25,13 @@ SECRET_KEY = 'kx8=hl5lt2@!!%wc8fi_dli6@22b-*+uq5&m89g5&&q$sd-z8='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.19']
+ALLOWED_HOSTS = ['192.168.0.19', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'ayumi_manager.apps.AyumiManagerConfig',
+    # 'ayumi_manager.apps.AyumiManagerConfig',
     'boards.apps.BoardsConfig',
     'accounts.apps.AccountsConfig',
     'polls.apps.PollsConfig',
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_extensions',
     'debug_toolbar',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

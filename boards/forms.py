@@ -1,5 +1,5 @@
 from django import forms
-from .models import Topic, Member
+from .models import Topic, Member, Post
 
 class NewTopicForm(forms.ModelForm):
     message = forms.CharField(
@@ -9,11 +9,11 @@ class NewTopicForm(forms.ModelForm):
         max_length=4000,
         help_text='The max length of the text is 4000.')
 
-    subject = forms.CharField(
-        widget=forms.TextInput (
-            attrs={'class': 'form-control'}
-        )
-        )
+    # subject = forms.CharField(
+    #     widget=forms.TextInput (
+    #         attrs={'class': 'form-control'}
+    #     )
+    #     )
 
     class Meta:
         model = Topic
@@ -24,7 +24,13 @@ class NewTopicForm(forms.ModelForm):
         subject = self.cleaned_data['subject']
         if subject=="test":
             raise forms.ValidationError('subjectにtestは使用できません')
-            
+        return subject
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['message',]
+        
 class MemberModelForm(forms.ModelForm):
     class Meta:
         model = Member

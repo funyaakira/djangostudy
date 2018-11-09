@@ -4,6 +4,7 @@ from django.urls import reverse, resolve
 from django.test import TestCase
 from accounts.views import signup
 from accounts.forms import SignUpForm
+from django.test.utils import setup_test_environment
 
 class SignUpTests(TestCase):
     def setUp(self):
@@ -78,3 +79,23 @@ class SignUpFormTest(TestCase):
         # print(actual)
 
         self.assertSequenceEqual(expected, actual)
+
+class InvalidSignupTests2(TestCase):
+    def setUp(self):
+        url = reverse('signup')
+        self.response = self.client.post(url, {
+            'username': 'joe',
+            'email': 'funya.akira@gmail.com',
+            'password1': 'abcdef123456',
+            'password2': 'abcdef123456'
+        })
+        self.response = self.client.post(url, {
+            'username': 'Akira',
+            'email': 'funya.akira@gmail.com',
+            'password1': 'abcdef123456',
+            'password2': 'abcdef123456'
+        })
+
+    def test_dont_cureate_user2(self):
+        print(User.objects.count())
+        # self.assertFalse(User.objects.filter(username='Akira'))
