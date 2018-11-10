@@ -1,6 +1,5 @@
 body {
   background-image: url(../img/houndstooth-pattern.png);
-  background-color: red:
 }
 
 .logo {
@@ -12,6 +11,6 @@ body {
 }
 
 .logo a:hover,
-.logo a.active {
-  text-decoration:none;
+.logo a:active {
+  text-decoration: none;
 }
