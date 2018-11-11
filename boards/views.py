@@ -1,20 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Board
 from django.contrib.auth.models import User
-from .models import Board, Topic, Post
-from django.http import Http404, HttpResponse
-from .forms import NewTopicForm, MemberModelForm, PostForm
-from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
+from django.views.decorators.http import require_POST
 from django.views.generic import UpdateView, ListView
+from django.db.models import Count
 from django.utils import timezone
 from django.utils.decorators import method_decorator
+from django.http import Http404, HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .models import Board, Topic, Post
+from .forms import NewTopicForm, MemberModelForm, PostForm
 
 def home(request):
     boards = Board.objects.all()
-    return render(request, 'boards/home.html',{'boards': boards})
+    return render(request, 'home.html',{'boards': boards})
 
 def board_topics(request, pk):
     board = get_object_or_404(Board, pk=pk)
@@ -34,7 +33,7 @@ def board_topics(request, pk):
         topics = paginator.page(paginator.num_pages)
 
 
-    return render(request, 'boards/topics.html', {'board': board, 'topics': topics})
+    return render(request, 'topics.html', {'board': board, 'topics': topics})
 
 @login_required
 def new_topic(request, pk):
@@ -58,7 +57,7 @@ def new_topic(request, pk):
     else:
         form = NewTopicForm()
 
-    return render(request, 'boards/new_topic.html', {'board': board, 'form': form})
+    return render(request, 'new_topic.html', {'board': board, 'form': form})
 
 def topic_posts(request, pk, topic_pk):
     topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)
@@ -108,12 +107,12 @@ class PostUpdateView(UpdateView):
 class BoardListView(ListView):
     model = Board
     context_object_name = 'boards'
-    template_name = "boards/home.html"
+    template_name = "home.html"
 
 class TopicListView(ListView):
     model = Topic
     context_object_name = 'topics'
-    template_name = 'boards/topics.html'
+    template_name = 'topics.html'
     paginate_by = 20
 
     def get_context_data(self, **kwargs):

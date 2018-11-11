@@ -33,8 +33,6 @@ ALLOWED_HOSTS = ['192.168.0.19', '127.0.0.1']
 INSTALLED_APPS = [
     # 'ayumi_manager.apps.AyumiManagerConfig',
     'boards.apps.BoardsConfig',
-    'accounts.apps.AccountsConfig',
-    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

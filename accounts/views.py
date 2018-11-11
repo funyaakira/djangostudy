@@ -19,7 +19,7 @@ def signup(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request,'signup/signup.html',{'form': form})
+    return render(request,'signup.html',{'form': form})
 
 @method_decorator(login_required, name="dispatch")
 class UserUpdateView(UpdateView):
